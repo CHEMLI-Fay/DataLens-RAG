@@ -1,0 +1,149 @@
+[[sources]]
+id = "skl-pitfalls"
+library = "scikit-learn"
+title = "Common pitfalls and recommended practices"
+url = "https://scikit-learn.org/stable/common_pitfalls.html"
+
+[[sources]]
+id = "skl-compose"
+library = "scikit-learn"
+title = "Pipelines and composite estimators"
+url = "https://scikit-learn.org/stable/modules/compose.html"
+
+[[sources]]
+id = "skl-preprocessing"
+library = "scikit-learn"
+title = "Preprocessing data"
+url = "https://scikit-learn.org/stable/modules/preprocessing.html"
+
+[[sources]]
+id = "skl-impute"
+library = "scikit-learn"
+title = "Imputation of missing values"
+url = "https://scikit-learn.org/stable/modules/impute.html"
+
+[[sources]]
+id = "skl-validation"
+library = "scikit-learn"
+title = "Cross-validation: evaluating estimator performance"
+url = "https://scikit-learn.org/stable/modules/cross_validation.html"
+
+[[sources]]
+id = "skl-search"
+library = "scikit-learn"
+title = "Tuning the hyper-parameters of an estimator"
+url = "https://scikit-learn.org/stable/modules/grid_search.html"
+
+[[sources]]
+id = "skl-metrics"
+library = "scikit-learn"
+title = "Metrics and scoring: quantifying the quality of predictions"
+url = "https://scikit-learn.org/stable/modules/model_evaluation.html"
+
+[[sources]]
+id = "skl-linear-models"
+library = "scikit-learn"
+title = "Linear Models"
+url = "https://scikit-learn.org/stable/modules/linear_model.html"
+
+[[sources]]
+id = "skl-neighbors"
+library = "scikit-learn"
+title = "Nearest Neighbors"
+url = "https://scikit-learn.org/stable/modules/neighbors.html"
+
+[[sources]]
+id = "skl-naive-bayes"
+library = "scikit-learn"
+title = "Naive Bayes"
+url = "https://scikit-learn.org/stable/modules/naive_bayes.html"
+
+[[sources]]
+id = "skl-trees"
+library = "scikit-learn"
+title = "Decision Trees"
+url = "https://scikit-learn.org/stable/modules/tree.html"
+
+[[sources]]
+id = "skl-ensembles"
+library = "scikit-learn"
+title = "Ensemble methods"
+url = "https://scikit-learn.org/stable/modules/ensemble.html"
+
+[[sources]]
+id = "skl-clustering"
+library = "scikit-learn"
+title = "Clustering"
+url = "https://scikit-learn.org/stable/modules/clustering.html"
+
+[[sources]]
+id = "skl-feature-selection"
+library = "scikit-learn"
+title = "Feature selection"
+url = "https://scikit-learn.org/stable/modules/feature_selection.html"
+
+[[sources]]
+id = "skl-inspection"
+library = "scikit-learn"
+title = "Inspection"
+url = "https://scikit-learn.org/stable/inspection.html"
+
+[[sources]]
+id = "skl-persistence"
+library = "scikit-learn"
+title = "Model persistence"
+url = "https://scikit-learn.org/stable/model_persistence.html"
+
+[[sources]]
+id = "skl-feature-extraction"
+library = "scikit-learn"
+title = "Feature extraction"
+url = "https://scikit-learn.org/stable/modules/feature_extraction.html"
+
+[[sources]]
+id = "pd-missing"
+library = "pandas"
+title = "Working with missing data"
+url = "https://pandas.pydata.org/docs/user_guide/missing_data.html"
+
+[[sources]]
+id = "pd-merging"
+library = "pandas"
+title = "Merge, join, concatenate and compare"
+url = "https://pandas.pydata.org/docs/user_guide/merging.html"
+
+[[sources]]
+id = "pd-groupby"
+library = "pandas"
+title = "Group by: split-apply-combine"
+url = "https://pandas.pydata.org/docs/user_guide/groupby.html"
+
+[[sources]]
+id = "pd-indexing"
+library = "pandas"
+title = "Indexing and selecting data"
+url = "https://pandas.pydata.org/docs/user_guide/indexing.html"
+
+[[sources]]
+id = "pd-io"
+library = "pandas"
+title = "IO tools"
+url = "https://pandas.pydata.org/docs/user_guide/io.html"
+
+[[sources]]
+id = "pd-reshaping"
+library = "pandas"
+title = "Reshaping and pivot tables"
+url = "https://pandas.pydata.org/docs/user_guide/reshaping.html"
+
+[[sources]]
+id = "pd-scaling"
+library = "pandas"
+title = "Scaling to large datasets"
+url = "https://pandas.pydata.org/docs/user_guide/scale.html"
+
+[[sources]]
+id = "pd-cookbook"
+library = "pandas"
+title = "Cookbook"
+url = "https://pandas.pydata.org/docs/user_guide/cookbook.html"
