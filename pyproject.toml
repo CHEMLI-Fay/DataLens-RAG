@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rag-data-science-docs"
+version = "0.1.0"
+description = "A source-grounded RAG assistant for data science documentation."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "beautifulsoup4>=4.13,<5",
+  "httpx>=0.28,<1",
+  "numpy>=2.2,<3",
+]
+
+[project.optional-dependencies]
+retrieval = [
+  "faiss-cpu>=1.12,<2",
+  "sentence-transformers>=5,<6",
+]
+generation = [
+  "ollama>=0.6,<1",
+]
+dev = [
+  "ipykernel>=6.29,<7",
+  "pytest>=8.3,<9",
+]
+
+[project.scripts]
+rag-assistant = "rag_assistant.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rag_assistant"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

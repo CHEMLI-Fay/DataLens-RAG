@@ -1,0 +1,22 @@
+[embedding]
+model_name = "intfloat/multilingual-e5-small"
+normalize_embeddings = true
+document_prefix = "passage: "
+query_prefix = "query: "
+
+[chunking]
+strategy = "fixed_tokens"
+chunk_size = 250
+chunk_overlap = 40
+
+[retrieval]
+top_k = 5
+
+[generation]
+provider = "ollama"
+model_name = "qwen2.5:1.5b"
+temperature = 0.0
+max_context_characters = 6000
+max_output_tokens = 1200
+keep_alive_seconds = 1800
+timeout_seconds = 120.0

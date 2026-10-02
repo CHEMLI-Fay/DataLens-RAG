@@ -1,0 +1,30 @@
+# Local environment
+.venv/
+
+# Secrets and local settings
+.env
+
+# Python caches and test artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Local planning and agent instructions
+AGENTS.md
+PROJECT_PLAN.md
+
+# Downloaded source material and generated artifacts
+data/raw/
+data/processed/
+artifacts/
+
+# Local editor settings and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
