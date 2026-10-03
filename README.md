@@ -6,7 +6,7 @@ A local Retrieval-Augmented Generation system that answers questions from select
 
 The assistant downloads an explicit allowlist of documentation pages and records their provenance. It extracts readable sections from the HTML, splits long sections into overlapping chunks, embeds them with a multilingual sentence-transformer model, and stores the normalized vectors in a FAISS index.
 
-At query time, the assistant retrieves five candidate chunks, filters them for direct relevance, and sends at most three evidence passages to a local Ollama model. It answers in the language of the question and returns the source titles and URLs. If no retrieved passage contains sufficient evidence, it abstains.
+At query time, the assistant retrieves five candidate chunks, filters them for relevance, and sends at most three evidence passages to a local Ollama model. The prompt requests an answer in the language of the question with source labels. Abstention is intended when evidence is insufficient, but the current selector and model do not reliably enforce it.
 
 ```mermaid
 flowchart LR
@@ -99,11 +99,13 @@ The terminal displays only three main stages: loading local resources, searching
 
 French queries are translated into English search terms because the indexed documentation is in English. Retrieval returns five candidates. A relevance step keeps up to three passages that directly address the question before generation. The answer prompt requires evidence-grounded prose and an explicit insufficient-evidence response when the corpus cannot answer.
 
-Generation settings are centralized in `config/settings.toml`. The current baseline uses deterministic sampling, a 6,000-character evidence budget, a 1,200-token answer limit, a 120-second inactivity timeout, and a 30-minute Ollama keep-alive request.
+Generation settings are centralized in `config/settings.toml`. The current baseline uses deterministic sampling, a 6,000-character evidence budget, a 1,200-token answer limit, a 900-second network read timeout for slow CPU generation, and a 30-minute Ollama keep-alive request. Non-streaming requests may wait for the full answer before returning data.
 
 ## Notebook
 
 Open `notebooks/rag_experiments.ipynb`, select the project virtual environment, restart the kernel, and run the cells from top to bottom. The notebook explains the data flow and inspects intermediate records rather than duplicating the reusable implementation in `src/rag_assistant`.
+
+To execute every cell and save the outputs from the terminal, run `.\.venv\Scripts\python.exe scripts/execute_notebook.py`. The script uses that Python environment for the kernel, prints cell progress, and saves the notebook only after all cells succeed. CPU generation and the 15-question evaluation can take several minutes; there is no overall cell timeout. Close the notebook editor before running this command to avoid conflicting saves.
 
 ## Evaluation
 
@@ -131,13 +133,16 @@ One local baseline run with `qwen2.5:1.5b` produced the following manually revie
 | Answers rated partial | 3/15 |
 | Answers rated incorrect or unsafe | 6/15 |
 
-This result separates retrieval quality from generation quality. Retrieval found the expected documentation reliably, while the small local model often failed on questions requiring precise distinctions or several constraints. Subsequent relevance filtering correctly rejected the two out-of-corpus questions in targeted checks, but the complete benchmark has not yet been rerun after that change.
+This historical manual review separates retrieval quality from generation quality. Retrieval found the expected documentation reliably, while the small local model often failed on questions requiring precise distinctions or several constraints.
+
+The newly executed notebook includes all 15 benchmark answers with no execution errors. Expected documents were retrieved for all 13 answerable questions. The evaluator reports 15/15 retrieval checks because the two out-of-corpus questions automatically pass that check; answer-format checks pass for 13/15. Both out-of-corpus questions fail to abstain, and q01 reaches the output limit with repetitive text. These automatic scores do not replace a new manual factual review.
 
 ## Limitations
 
 - The source allowlist is intentionally narrow and does not represent all scikit-learn or pandas documentation.
 - Dense retrieval alone can miss exact terminology; hybrid retrieval and reranking are future experiments.
 - The relevance selector and generator use the same small local model, so difficult questions may still be answered incorrectly.
+- The executed notebook shows repetition and truncation in the French missing-values answer, and an unsupported answer to the out-of-corpus Kubernetes question. These are model failures, not successful factual validations.
 - A source label records which passage was supplied to the model. It does not prove that every generated claim is supported.
 - The evaluation set is useful for iteration but too small for production claims.
 - CPU latency depends on local hardware and the first model load is substantially slower than later questions in the same session.

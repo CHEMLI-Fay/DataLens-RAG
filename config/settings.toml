@@ -19,4 +19,4 @@ temperature = 0.0
 max_context_characters = 6000
 max_output_tokens = 1200
 keep_alive_seconds = 1800
-timeout_seconds = 120.0
+timeout_seconds = 900.0

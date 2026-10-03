@@ -24,6 +24,8 @@ generation = [
 ]
 dev = [
   "ipykernel>=6.29,<7",
+  "nbclient>=0.10,<1",
+  "nbformat>=5.10,<6",
   "pytest>=8.3,<9",
 ]
 
