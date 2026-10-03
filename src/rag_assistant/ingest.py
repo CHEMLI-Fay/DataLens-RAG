@@ -6,6 +6,7 @@ from datetime import UTC, datetime
 import hashlib
 import json
 from pathlib import Path
+import time
 from typing import Any
 from urllib.parse import urlparse
 
@@ -15,6 +16,7 @@ from rag_assistant.config import Source, load_sources
 
 
 USER_AGENT = "rag-data-science-docs/0.1 (+local educational project)"
+MAX_DOWNLOAD_ATTEMPTS = 3
 
 
 def download_sources(
@@ -56,7 +58,18 @@ def _download_source(
     source: Source,
 ) -> tuple[dict[str, Any], bytes]:
     """Download one source and reject a redirect outside its configured host."""
-    response = client.get(source.url)
+    response: httpx.Response | None = None
+    for attempt in range(1, MAX_DOWNLOAD_ATTEMPTS + 1):
+        try:
+            response = client.get(source.url)
+            break
+        except (httpx.TimeoutException, httpx.NetworkError):
+            if attempt == MAX_DOWNLOAD_ATTEMPTS:
+                raise
+            time.sleep(attempt)
+
+    if response is None:
+        raise RuntimeError(f"No response received for source {source.identifier}.")
     response.raise_for_status()
 
     configured_host = urlparse(source.url).hostname

@@ -47,8 +47,8 @@ def build_parser() -> argparse.ArgumentParser:
     ingest_parser.add_argument(
         "--timeout-seconds",
         type=float,
-        default=30.0,
-        help="Network timeout for each source request.",
+        default=120.0,
+        help="Network timeout for each source request (default: 120 seconds).",
     )
 
     extract_parser = subparsers.add_parser(

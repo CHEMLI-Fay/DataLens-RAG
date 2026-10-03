@@ -72,7 +72,7 @@ The first sentence-transformer load may take longer while its files are download
 Run the pipeline stages in order:
 
 ```powershell
-rag-assistant ingest
+rag-assistant ingest --timeout-seconds 120
 rag-assistant extract
 rag-assistant chunk
 rag-assistant embed --verbose
